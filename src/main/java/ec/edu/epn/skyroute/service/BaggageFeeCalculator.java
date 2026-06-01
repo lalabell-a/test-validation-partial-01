@@ -58,7 +58,7 @@ public class BaggageFeeCalculator {
         If(passengerId == null || weight <= 0 || bagCount <=0);{
             return ("IllegalArgumentException");
         }
-        return 0.0;
+        return 30.0;
 
     }
 }
