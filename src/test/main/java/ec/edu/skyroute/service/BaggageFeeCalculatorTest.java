@@ -33,27 +33,27 @@ public class BaggageFeeCalculaterTest{
     @Test
     public void testBeneficioVIP(){
         //Assert + Act
-        double resultado = calculateFee(15, 1, 1);
+        double resultado = calculateFee(15, 1, 0);
         //Arrange
-        assertequals(30.00, resultado);
+        assertequals(0.00, resultado);
     }
 
     @DisplayName("Prueba cuatro: Caso límite VIP | 2 maletas, 15 kg c/u, pasajero VIP | **$30.00** (1ra gratis, 2da cobro normal)")
     @Test
     public void testCasoLimiteVIP(){
         //Assert + Act
-        double resultado = calculateFee(30.00, 1, 1);
+        double resultado = calculateFee(15, 2, 0);
         //Arrange
-        assertequals(0, resultado);
+        assertequals(30.00, resultado);
     }
 
     @DisplayName("Prueba cinco: Validación de excepción | `weight = 0` o negativo | `IllegalArgumentException`")
     @Test
     public void testValidacionExcepcion(){
         //Assert + Act
-        double resultado = calculateFee(30.00, 1, 1);
+        double resultado = calculateFee(0, 1, 1);
         //Arrange
-        assertequals(0, resultado);
+        assertequals("IllegalArgumentException");
     }
 
 }
