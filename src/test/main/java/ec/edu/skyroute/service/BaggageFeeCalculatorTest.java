@@ -12,27 +12,48 @@ public class BaggageFeeCalculaterTest{
 
     @DisplayName("Prueba uno: Equipaje estándar | 1 maleta, 20 kg, pasajero regular | **$30.00**")
     @Test
-    public void TestEquipajeEstandar(){
+    public void testEquipajeEstandar(){
         //Assert + Act
-        double resultado = calculateFee(30.00, 1, 1);
+        double resultado = calculateFee(20, 1, 1);
         //Arrange
-        assertequals(0, resultado);
+        assertequals(30.00, resultado);
     }
 
-    //Prueba dos: Exceso de peso | 1 maleta, 25 kg, pasajero regular | **$80.00** |
+    @DisplayName("Prueba dos: Exceso de peso | 1 maleta, 25 kg, pasajero regular | **$80.00**")
     @Test
-    public void TestEquipajeExceso(){
+    public void testEquipajeExceso(){
+        //Assert + Act
+        double resultado = calculateFee(25, 1, 1);
+        //Arrange
+        assertequals(80.00, resultado);
+    }
+
+
+    @DisplayName("Prueba tres: Beneficio VIP | 1 maleta, 15 kg, pasajero VIP | **$0.00** (requiere Mockito)")
+    @Test
+    public void testBeneficioVIP(){
+        //Assert + Act
+        double resultado = calculateFee(15, 1, 1);
+        //Arrange
+        assertequals(30.00, resultado);
+    }
+
+    @DisplayName("Prueba cuatro: Caso límite VIP | 2 maletas, 15 kg c/u, pasajero VIP | **$30.00** (1ra gratis, 2da cobro normal)")
+    @Test
+    public void testCasoLimiteVIP(){
         //Assert + Act
         double resultado = calculateFee(30.00, 1, 1);
         //Arrange
         assertequals(0, resultado);
     }
 
-
-    //Prueba tres: Beneficio VIP | 1 maleta, 15 kg, pasajero VIP | **$0.00** (requiere Mockito) |
-
-    //Prueba cuatro: Caso límite VIP | 2 maletas, 15 kg c/u, pasajero VIP | **$30.00** (1ra gratis, 2da cobro normal) |
-
-    //Prueba cinco: Validación de excepción | `weight = 0` o negativo | `IllegalArgumentException` |
+    @DisplayName("Prueba cinco: Validación de excepción | `weight = 0` o negativo | `IllegalArgumentException`")
+    @Test
+    public void testValidacionExcepcion(){
+        //Assert + Act
+        double resultado = calculateFee(30.00, 1, 1);
+        //Arrange
+        assertequals(0, resultado);
+    }
 
 }
